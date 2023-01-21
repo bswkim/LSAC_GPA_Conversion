@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LSAC GPA Conversion</title>
+  <script>
+    function selectFile() {
+      document.getElementById("fileInput").click();
+    }
+    function convertGPA() {
+      var fileInput = document.getElementById("fileInput");
+      var file = fileInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function() {
+        // Call the lsac_gpa_conversion function with the file content
+        var lsac_gpa = lsac_gpa_conversion(reader.result);
+        // Display the LSAC GPA on the page
+        document.getElementById("gpa").innerHTML = lsac_gpa;
+      }
+      reader.readAsText(file);
+    }
+  </script>
+</head>
+<body>
+  <input type="file" id="fileInput" style="display: none;" onchange="convertGPA()">
+  <button onclick="selectFile()">Select PDF</button>
+  <br>
+  <span id="gpa"></span>
+</body>
+</html>
